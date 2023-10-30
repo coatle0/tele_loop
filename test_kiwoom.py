@@ -90,8 +90,9 @@ def run_bot(queue_in,queue_out):
             print(mes.id)
         if '/tstdel' in event.message.message:
             print("delete message")
-            await client.delete_message(my_bot_ch,[rt_jm_dic["test message"]])
             print(rt_jm_dic["test message"])
+            await client.delete_messages(my_bot_ch,[rt_jm_dic["test message"]])
+            
         
         
 
