@@ -20,5 +20,5 @@ ssid_asset <- "1M0LjBg2tPZprA-BIvsOZXjNPyK_gKm4pY4Ns93gvgJo"
 range_clear(ssid_asset,sheet='IR')
 sheet_nm <- "IR"
 range_write(ssid_asset,sc_ir,range="A1",col_names = TRUE,sheet = sheet_nm)
-range_write(ssid_asset,data.frame('check'),range="H1",col_names = FALSE,sheet = sheet_nm)
+range_write(ssid_asset,data.frame('check'),range="I1",col_names = FALSE,sheet = sheet_nm)
 
