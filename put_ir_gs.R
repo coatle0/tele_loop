@@ -1,12 +1,12 @@
 library(readxl)
 library(openxlsx)
 
-IR_new <- read_excel("C:/users/coatle/IR.xlsx")
+IR_new <- read_excel("IR.xlsx")
 
 
 ir_gs <-read_asgs_sheet('IR')
 ir_rm<-ir_gs[which(ir_gs$check=='o'),]
-ir_rm_ori <- read_excel("c:/users/coatle/ir_rm.xlsx")
+ir_rm_ori <- read_excel("ir_rm.xlsx")
 ir_rm_new<-rbind(ir_rm,ir_rm_ori)
 write.xlsx(ir_rm_new,"ir_rm.xlsx",sheetName='IR',append=TRUE)
 sc_ir<-anti_join(IR_new,ir_rm_new,by='rcept_no')
