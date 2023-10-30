@@ -22,7 +22,7 @@ fn_prefix = 'perform3Q23_'
 dart_url = 'http://dart.fss.or.kr/dsaf001/main.do?rcpNo='
 naver_url = 'https://finance.naver.com/item/fchart.naver?code='
 
-sfjm_fn = "stockfu.xlsx"
+sfjm_fn = "stockfu.xls"
 sfjm_list = pd.read_excel(sfjm_fn,dtype=str)
 
 #start_date = input("input start date:")
