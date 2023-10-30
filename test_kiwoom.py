@@ -75,7 +75,7 @@ def run_bot(queue_in,queue_out):
 
     @client.on(events.NewMessage(chats=my_bot_ch))
     async def handler(event):
-        global rt_jm_dic
+        global msg_dic
         if '/testkw' in event.message.message:
             print("[Bot] message:",event.message.message)
             queue_out.put(event.message.message)
@@ -90,8 +90,8 @@ def run_bot(queue_in,queue_out):
             print(mes.id)
         if '/tstdel' in event.message.message:
             print("delete message")
-            print(rt_jm_dic["test message"])
-            await client.delete_messages(my_bot_ch,[rt_jm_dic["test message"]])
+            print(msg_dic["test message"])
+            await client.delete_messages(my_bot_ch,[msg_dic["test message"]])
             
         
         
