@@ -75,6 +75,7 @@ def run_bot(queue_in,queue_out):
 
     @client.on(events.NewMessage(chats=my_bot_ch))
     async def handler(event):
+        global rt_jm_dic
         if '/testkw' in event.message.message:
             print("[Bot] message:",event.message.message)
             queue_out.put(event.message.message)
@@ -82,6 +83,19 @@ def run_bot(queue_in,queue_out):
             print("[Bot] message:",event.message.message)
             queue_out.put(event.message.message)
             sys.exit()
+        if '/tstsend' in event.message.message:
+            print("send message")
+            mes=await client.send_message(my_bot_ch,"test message")
+            msg_dic["test message"] = mes.id
+            print(mes.id)
+        if '/tstdel' in event.message.message:
+            print("delete message")
+            await client.delete_message(my_bot_ch,[rt_jm_dic["test message"]])
+            print(rt_jm_dic["test message"])
+        
+        
+
+
     async def check_queue():
         global msg_dic
         global ref_pef
@@ -143,6 +157,7 @@ def run_bot(queue_in,queue_out):
                         #print(msg_dic[cmd.split(' ')[1]])
                         #await client.edit_message(entity=my_bot_ch, message=msg_dic[cmd.split(' ')[1]],text=cmd.split('_')[1])
                         await client.delete_messages(entity=my_bot_ch, message_ids=[msg_dic[cmd.split(' ')[1]]])
+                        #await client.invoke(DeleteMessagesRequest(my_bot_ch, [msg_dic[cmd.split(' ')[1]]]))
                         await client.send_message(my_bot_ch,cmd.split('_')[1])
 
                     else:
