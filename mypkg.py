@@ -35,7 +35,7 @@ def issf(jm_name):
 
 def get_code(jm_name):
     df_code = dart.corp_codes 
-    return(df_code[(df_code['corp_name']==jm_name) &(df_code['stock_code'] != ' ')]['stock_code'])
+    return(df_code[(df_code['corp_name']==jm_name) &(df_code['stock_code'] != ' ')]['stock_code'].iloc[0])
 
 async def tele_send_msg(msg_txt):
     bot.send_message(chat_id,msg_txt)
