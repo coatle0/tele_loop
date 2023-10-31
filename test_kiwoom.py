@@ -50,6 +50,8 @@ tslot = 0
 global rt_jm_dic
 rt_jm_dic = {}
 
+global price_msg
+
 
 def run_bot(queue_in,queue_out):
     print("run_bot()")
@@ -102,6 +104,7 @@ def run_bot(queue_in,queue_out):
         global ref_pef
         global tslot
         global rt_jm_dic
+        global price_msg
         
 
         print('[BOT] check_queue(): start')
@@ -154,24 +157,34 @@ def run_bot(queue_in,queue_out):
                         
                 elif cmd.split(' ')[0] == 'aim':
                     #print('code:'+cmd.split(' ')[1])
+                    tgt_str = ''
                     if cmd.split(' ')[1] in msg_dic:
                         #print(msg_dic[cmd.split(' ')[1]])
                         #await client.edit_message(entity=my_bot_ch, message=msg_dic[cmd.split(' ')[1]],text=cmd.split('_')[1])
-                        await client.delete_messages(my_bot_ch, [msg_dic[cmd.split(' ')[1]]])
-                        mes=await client.send_message(my_bot_ch,cmd.split('_')[1])
-                        msg_dic[cmd.split(' ')[1]] = mes.id
+                        #await client.delete_messages(my_bot_ch, [msg_dic[cmd.split(' ')[1]]])
+                        #mes=await client.send_message(my_bot_ch,cmd.split('_')[1])
+                        msg_dic[cmd.split(' ')[1]] = cmd.split('_')[1]        
+                        #mes=await client.send_message(my_bot_ch,cmd.split('_')[1])
+                        #price_msg = mes.id
                         #print("delete message:")
                         #print(msg_dic[cmd.split(' ')[1]])
                         #await client.invoke(DeleteMessagesRequest(my_bot_ch, [msg_dic[cmd.split(' ')[1]]]))
                         #await client.send_message(my_bot_ch,cmd.split('_')[1])
 
                     else:
-                        mes=await client.send_message(my_bot_ch,cmd.split('_')[1])
-                        msg_dic[cmd.split(' ')[1]] = mes.id
+                        
+                        msg_dic[cmd.split(' ')[1]] = my_bot_ch,cmd.split('_')[1]
                         print('init msg dic')
                         print(msg_dic[cmd.split(' ')[1]])
                         print(mes.id)
-       
+
+                    for k in msg_dic.keys():
+                        tgt_str = tgt_str + msg_dic[k]
+
+                    await client.delete_messages(my_bot_ch, [price_msg])
+                    mes=await client.send_message(my_bot_ch,tgt_str)
+                    price_msg = mes.id
+
                     #print(mes)
                     #await client.delete_messages(entity=my_bot_ch, message_ids=[mes.id])
 
