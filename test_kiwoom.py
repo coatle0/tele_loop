@@ -174,9 +174,9 @@ def run_bot(queue_in,queue_out):
                     else:
                         
                         msg_dic[cmd.split(' ')[1]] = my_bot_ch,cmd.split('_')[1]
-                        print('init msg dic')
-                        print(msg_dic[cmd.split(' ')[1]])
-                        print(mes.id)
+                        #print('init msg dic')
+                        #print(msg_dic[cmd.split(' ')[1]])
+                        #print(mes.id)
 
                     for k in msg_dic.keys():
                         tgt_str = tgt_str + msg_dic[k]
