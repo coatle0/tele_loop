@@ -105,7 +105,8 @@ def run_bot(queue_in,queue_out):
         global tslot
         global rt_jm_dic
         global price_msg
-        
+
+        price_msg = 0       
 
         print('[BOT] check_queue(): start')
         while True:
@@ -181,7 +182,9 @@ def run_bot(queue_in,queue_out):
                     for k in msg_dic.keys():
                         tgt_str = tgt_str + msg_dic[k]
 
-                    await client.delete_messages(my_bot_ch, [price_msg])
+                    if price_msg != 0:
+                        await client.delete_messages(my_bot_ch, [price_msg])
+                    
                     mes=await client.send_message(my_bot_ch,tgt_str)
                     price_msg = mes.id
 
