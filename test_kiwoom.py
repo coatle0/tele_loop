@@ -78,6 +78,7 @@ def run_bot(queue_in,queue_out):
     @client.on(events.NewMessage(chats=my_bot_ch))
     async def handler(event):
         global msg_dic
+        global rt_jm_dic
         if '/testkw' in event.message.message:
             print("[Bot] message:",event.message.message)
             queue_out.put(event.message.message)
@@ -94,6 +95,9 @@ def run_bot(queue_in,queue_out):
             print("delete message")
             print(msg_dic["test message"])
             await client.delete_messages(my_bot_ch,[msg_dic["test message"]])
+        if '/delreal' in event.message.message:
+            del msg_dic[mypkg.get_code(event.message.message.split(' ')[1])]
+            del rt_jm_dic[mypkg.get_code(event.message.message.split(' ')[1])]
             
         
         
@@ -388,12 +392,13 @@ class MyWindow(QMainWindow):
     def _handler_real_data(self, code, real_type, real_data):
         global rt_jm_dic
         if real_type == "주식체결":
-            if rt_jm_dic[code][1] ==0:
-                tgt_str= f"aim {code} _{rt_jm_dic[code][0]} {self.GetCommRealData(code, 10)}  체결시간: {self.GetCommRealData(code, 20)} 등락율:{self.GetCommRealData(code, 12)} 누적거래량:{self.GetCommRealData(code, 13)} 전일거래량대비:{self.GetCommRealData(code, 30)}"
-                #print(tgt_str)
-                #self.plain_text_edit.appendPlainText(tgt_str)
-                self.queue_in.put(tgt_str)
-                rt_jm_dic[code][1] = 1
+            if code in rt_jm_dic: 
+                if rt_jm_dic[code][1] ==0:
+                    tgt_str= f"aim {code} _{rt_jm_dic[code][0]}{mypkg.issf(rt_jm_dic[code][0])}{self.GetCommRealData(code, 10)}  체결시간: {self.GetCommRealData(code, 20)} 등락율:{self.GetCommRealData(code, 12)} 누적거래량:{self.GetCommRealData(code, 13)} 전일거래량대비:{self.GetCommRealData(code, 30)}"
+                    #print(tgt_str)
+                    #self.plain_text_edit.appendPlainText(tgt_str)
+                    self.queue_in.put(tgt_str)
+                    rt_jm_dic[code][1] = 1
 
         if real_type == "주문체결":
             self.plain_text_edit.appendPlainText(f"real data 주문체결")
