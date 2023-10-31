@@ -298,6 +298,7 @@ async def handler(event):
         await event.message.delete()
         print('rscript --vanilla run_jm.R '+jm_name+" "+market)
         os.system('rscript --vanilla run_jm.R '+jm_name+" "+market)
+        await client.send_message(my_bot_ch,"https://docs.google.com/spreadsheets/d/1GWW0Q1RgMNAvSG7S4OyrbXSpcSHDnMSmd2uTsmZyJJE/edit#gid=1026403975")
 
     
     if event.message.message == '/deepl':
