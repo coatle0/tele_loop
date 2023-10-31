@@ -126,7 +126,7 @@ def run_bot(queue_in,queue_out):
             await asyncio.sleep(1)
             tslot = tslot + 1
 
-            if tslot % 30 == 0:
+            if tslot % 10 == 0:
                 df_pef = mypkg.dart_mon_pf_td()
                 df_pef_dt = df_pef.shape[0] - ref_pef.shape[0]
 
