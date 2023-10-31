@@ -135,7 +135,7 @@ def run_bot(queue_in,queue_out):
                         #asyncio.run(mypkg.tele_send_msg(tgt_str))
                         await client.send_message(my_bot_ch,tgt_str)
                 ref_pef=df_pef
-            if len(rt_jm_dic) != 0:
+            if len(rt_jm_dic) % 5 == 0:
                 rt_jm_dic[list(rt_jm_dic.keys())[tslot%len(rt_jm_dic)]][1]=0
                 
             if not queue_in.empty():
