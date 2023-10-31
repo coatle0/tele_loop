@@ -135,7 +135,7 @@ def run_bot(queue_in,queue_out):
                         #asyncio.run(mypkg.tele_send_msg(tgt_str))
                         await client.send_message(my_bot_ch,tgt_str)
                 ref_pef=df_pef
-            if len(rt_jm_dic) % 5 == 0:
+            if len(rt_jm_dic) != 0:
                 rt_jm_dic[list(rt_jm_dic.keys())[tslot%len(rt_jm_dic)]][1]=0
                 
             if not queue_in.empty():
@@ -179,14 +179,15 @@ def run_bot(queue_in,queue_out):
                         #print(msg_dic[cmd.split(' ')[1]])
                         #print(mes.id)
 
-                    for k in msg_dic.keys():
-                        tgt_str = tgt_str + msg_dic[k]
+                    if tslot % 5 == 0:
+                        for k in msg_dic.keys():
+                            tgt_str = tgt_str + msg_dic[k]+ '\n' 
 
-                    if price_msg != 0:
-                        await client.delete_messages(my_bot_ch, [price_msg])
+                        if price_msg != 0:
+                            await client.delete_messages(my_bot_ch, [price_msg])
                     
-                    mes=await client.send_message(my_bot_ch,tgt_str)
-                    price_msg = mes.id
+                        mes=await client.send_message(my_bot_ch,tgt_str)
+                        price_msg = mes.id
 
                     #print(mes)
                     #await client.delete_messages(entity=my_bot_ch, message_ids=[mes.id])
