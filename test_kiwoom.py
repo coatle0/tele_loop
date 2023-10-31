@@ -179,7 +179,7 @@ def run_bot(queue_in,queue_out):
                         #print(msg_dic[cmd.split(' ')[1]])
                         #print(mes.id)
 
-                    if tslot % 5 == 0:
+                    if tslot % 10 == 0:
                         for k in msg_dic.keys():
                             tgt_str = tgt_str + msg_dic[k]+ '\n' 
 
