@@ -52,6 +52,9 @@ rt_jm_dic = {}
 
 global price_msg
 
+global perf_dic
+perf_dic = {}
+
 
 def run_bot(queue_in,queue_out):
     print("run_bot()")
@@ -64,8 +67,13 @@ def run_bot(queue_in,queue_out):
 
     @client.on(events.MessageEdited(chats=my_bot_ch))
     async def handler(event):
+        global perf_dic
         # Log the date of new edits
-        print('Message', event.id, 'changed at', event.date)
+        if event.id in perf_dic:
+            print('Message', event.id, 'changed at', event.date)
+            await client.delete_messages(my_bot_ch,[event.id])
+            await client.send_message(my_bot_ch,"/delreal "+perf_dic[event.id])
+            print("del real data"+ perf_dic[event.id])
 
     @client.on(events.MessageDeleted(chats=my_bot_ch))
     async def handler(event):
@@ -109,6 +117,7 @@ def run_bot(queue_in,queue_out):
         global tslot
         global rt_jm_dic
         global price_msg
+        global perf_dic
 
         price_msg = 0       
 
@@ -137,7 +146,9 @@ def run_bot(queue_in,queue_out):
                         print("new announce "+tstamp)
                         print(tgt_str)
                         #asyncio.run(mypkg.tele_send_msg(tgt_str))
-                        await client.send_message(my_bot_ch,tgt_str)
+                        mes=await client.send_message(my_bot_ch,tgt_str)
+                        perf_dic[mes.id] = df_pef['corp_name'].iloc[i]
+
                 ref_pef=df_pef
             if len(rt_jm_dic) != 0:
                 rt_jm_dic[list(rt_jm_dic.keys())[tslot%len(rt_jm_dic)]][1]=0
