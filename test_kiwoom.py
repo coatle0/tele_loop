@@ -173,7 +173,7 @@ def run_bot(queue_in,queue_out):
 
                     else:
                         
-                        msg_dic[cmd.split(' ')[1]] = my_bot_ch,cmd.split('_')[1]
+                        msg_dic[cmd.split(' ')[1]] = cmd.split('_')[1]
                         #print('init msg dic')
                         #print(msg_dic[cmd.split(' ')[1]])
                         #print(mes.id)
