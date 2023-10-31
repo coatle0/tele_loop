@@ -153,11 +153,11 @@ def run_bot(queue_in,queue_out):
                         print(mes.id)
                         
                 elif cmd.split(' ')[0] == 'aim':
-                    print('code:'+cmd.split(' ')[1])
+                    #print('code:'+cmd.split(' ')[1])
                     if cmd.split(' ')[1] in msg_dic:
                         #print(msg_dic[cmd.split(' ')[1]])
-                        await client.edit_message(entity=my_bot_ch, message=msg_dic[cmd.split(' ')[1]],text=cmd.split('_')[1])
-                        #await client.delete_messages(my_bot_ch, [msg_dic[cmd.split(' ')[1]]])
+                        #await client.edit_message(entity=my_bot_ch, message=msg_dic[cmd.split(' ')[1]],text=cmd.split('_')[1])
+                        await client.delete_messages(my_bot_ch, [msg_dic[cmd.split(' ')[1]]])
                         #print("delete message:")
                         #print(msg_dic[cmd.split(' ')[1]])
                         #await client.invoke(DeleteMessagesRequest(my_bot_ch, [msg_dic[cmd.split(' ')[1]]]))
