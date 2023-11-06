@@ -81,9 +81,9 @@ def run_bot(queue_in,queue_out):
             #await client.delete_messages(my_bot_ch,[event.id])
             #await client.send_message(my_bot_ch,"/delreal "+perf_dic[event.id])
             #print("del real data"+ perf_dic[event.id])
-            del msg_dic[mypkg.get_code(event.message.message.split(' ')[1])]
+            del msg_dic[mypkg.get_code(perf_dic[event.id])]
             print(msg_dic)
-            del rt_jm_dic[mypkg.get_code(event.message.message.split(' ')[1])]
+            del rt_jm_dic[mypkg.get_code(perf_dic[event.id])]
             print(rt_jm_dic)
             
 
