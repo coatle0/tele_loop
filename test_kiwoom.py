@@ -110,7 +110,9 @@ def run_bot(queue_in,queue_out):
             await client.delete_messages(my_bot_ch,[msg_dic["test message"]])
         if '/delreal' in event.message.message:
             del msg_dic[mypkg.get_code(event.message.message.split(' ')[1])]
+            print(msg_dic)
             del rt_jm_dic[mypkg.get_code(event.message.message.split(' ')[1])]
+            print(rt_jm_dic)
             
         
         
