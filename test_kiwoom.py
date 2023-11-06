@@ -76,7 +76,7 @@ def run_bot(queue_in,queue_out):
         # Log the date of new edits
         if event.id in perf_dic:
             print('Message', event.id, 'changed at', event.date)
-            await client.delete_messages(my_bot_ch,[event.id])
+            #await client.delete_messages(my_bot_ch,[event.id])
             await client.send_message(my_bot_ch,"/delreal "+perf_dic[event.id])
             print("del real data"+ perf_dic[event.id])
 
