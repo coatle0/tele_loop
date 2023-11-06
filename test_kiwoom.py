@@ -57,6 +57,9 @@ price_msg = 0
 global perf_dic
 perf_dic = {}
 
+global hts_ready
+hts_ready = False
+
 
 def run_bot(queue_in,queue_out):
     print("run_bot()")
@@ -120,9 +123,10 @@ def run_bot(queue_in,queue_out):
         global rt_jm_dic
         global price_msg
         global perf_dic
+        global hts_ready
 
         print('[BOT] check_queue(): start')
-        while True:
+        while hts_ready:
             await asyncio.sleep(1)
             tslot = tslot + 1
 
@@ -228,7 +232,9 @@ class bot_class(QThread):
 
 class MyWindow(QMainWindow):
     def __init__(self,queue_in,queue_out):
+
         super().__init__()
+        global hts_ready
         self.setGeometry(300, 300, 400, 300)
         self.setWindowTitle("pfman")
 
@@ -260,6 +266,7 @@ class MyWindow(QMainWindow):
 
         self.login_event_loop = QEventLoop()
         self.CommConnect()          # 로그인이 될 때까지 대기
+        hts_ready = True
         #self.subs_jm_aim('403490',2)
 
         #self.run()

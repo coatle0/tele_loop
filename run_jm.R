@@ -31,8 +31,6 @@ if (market=='k'){
     chk<-bot$send_message(chat_id,"ready to draw")
     temp$nvol <- (temp$volume-mean(temp$volume))/sd(temp$volume)
     temp_x<-xts(temp[,2:7],temp$date)
-
-
 }else{
     temp<-get(getSymbols(x,from=start_date))[,1:5]
     colnames(temp) <- c('open','high','low','close','volume')
