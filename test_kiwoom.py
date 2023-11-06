@@ -73,12 +73,19 @@ def run_bot(queue_in,queue_out):
     @client.on(events.MessageEdited(chats=my_bot_ch))
     async def handler(event):
         global perf_dic
+        global msg_dic
+        global rt_jm_dic
         # Log the date of new edits
         if event.id in perf_dic:
             print('Message', event.id, 'changed at', event.date)
             #await client.delete_messages(my_bot_ch,[event.id])
-            await client.send_message(my_bot_ch,"/delreal "+perf_dic[event.id])
-            print("del real data"+ perf_dic[event.id])
+            #await client.send_message(my_bot_ch,"/delreal "+perf_dic[event.id])
+            #print("del real data"+ perf_dic[event.id])
+            del msg_dic[mypkg.get_code(event.message.message.split(' ')[1])]
+            print(msg_dic)
+            del rt_jm_dic[mypkg.get_code(event.message.message.split(' ')[1])]
+            print(rt_jm_dic)
+            
 
     @client.on(events.MessageDeleted(chats=my_bot_ch))
     async def handler(event):
