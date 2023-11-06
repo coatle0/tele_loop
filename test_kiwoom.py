@@ -126,11 +126,11 @@ def run_bot(queue_in,queue_out):
         global hts_ready
 
         print('[BOT] check_queue(): start')
-        while hts_ready:
+        while True:
             await asyncio.sleep(1)
             tslot = tslot + 1
 
-            if tslot % 10 == 0:
+            if (tslot % 10 == 0) & hts_ready:
                 df_pef = mypkg.dart_mon_pf_td()
                 df_pef_dt = df_pef.shape[0] - ref_pef.shape[0]
 
