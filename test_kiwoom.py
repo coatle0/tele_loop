@@ -52,6 +52,8 @@ rt_jm_dic = {}
 
 global price_msg
 
+price_msg = 0       
+
 global perf_dic
 perf_dic = {}
 
@@ -118,8 +120,6 @@ def run_bot(queue_in,queue_out):
         global rt_jm_dic
         global price_msg
         global perf_dic
-
-        price_msg = 0       
 
         print('[BOT] check_queue(): start')
         while True:
@@ -302,6 +302,7 @@ class MyWindow(QMainWindow):
             self.plain_text_edit.appendPlainText("[BOT]"+'Aim jm:'+jm_name+jm_code+ jm_qty)
             #self.queue_in.put("aim "+jm_code+" _"+'Aim jm:'+jm_code+ jm_qty+'@'+jm_tgt_price)
             rt_jm_dic[jm_code]=[jm_name,0]
+            print(jm_name + jm_code+"set real")
             self.SetRealReg(2, jm_code, "20",1)
             #self.subs_jm_aim(aim_jm_lst,2)
 
@@ -403,7 +404,8 @@ class MyWindow(QMainWindow):
     def _handler_real_data(self, code, real_type, real_data):
         global rt_jm_dic
         if real_type == "주식체결":
-            if code in rt_jm_dic: 
+            print(code + "in real")
+            if code in rt_jm_dic:
                 if rt_jm_dic[code][1] ==0:
                     tgt_str= f"aim {code} _{rt_jm_dic[code][0]}{mypkg.issf(rt_jm_dic[code][0])}{self.GetCommRealData(code, 10)}  체결시간: {self.GetCommRealData(code, 20)} 등락율:{self.GetCommRealData(code, 12)} 누적거래량:{self.GetCommRealData(code, 13)} 전일거래량대비:{self.GetCommRealData(code, 30)}"
                     #print(tgt_str)
