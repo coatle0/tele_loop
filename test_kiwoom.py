@@ -163,9 +163,13 @@ def run_bot(queue_in,queue_out):
 
                 if price_msg != 0:
                     await client.delete_messages(my_bot_ch, [price_msg])
-                    
                     mes=await client.send_message(my_bot_ch,tgt_str)
                     price_msg = mes.id
+                else:
+                    mes=await client.send_message(my_bot_ch,tgt_str)
+                    price_msg = mes.id
+
+                    
 
                 
             if not queue_in.empty():
@@ -195,7 +199,7 @@ def run_bot(queue_in,queue_out):
                         #await client.delete_messages(my_bot_ch, [msg_dic[cmd.split(' ')[1]]])
                         #mes=await client.send_message(my_bot_ch,cmd.split('_')[1])
                         msg_dic[cmd.split(' ')[1]] = cmd.split('_')[1]
-                        print(msg_dic)        
+                        #print(msg_dic)        
                         #mes=await client.send_message(my_bot_ch,cmd.split('_')[1])
                         #price_msg = mes.id
                         #print("delete message:")
