@@ -156,6 +156,7 @@ def run_bot(queue_in,queue_out):
                 ref_pef=df_pef
             if len(rt_jm_dic) != 0:
                 rt_jm_dic[list(rt_jm_dic.keys())[tslot%len(rt_jm_dic)]][1]=0
+                print(rt_jm_dic)
                 
             if not queue_in.empty():
 
@@ -183,7 +184,8 @@ def run_bot(queue_in,queue_out):
                         #await client.edit_message(entity=my_bot_ch, message=msg_dic[cmd.split(' ')[1]],text=cmd.split('_')[1])
                         #await client.delete_messages(my_bot_ch, [msg_dic[cmd.split(' ')[1]]])
                         #mes=await client.send_message(my_bot_ch,cmd.split('_')[1])
-                        msg_dic[cmd.split(' ')[1]] = cmd.split('_')[1]        
+                        msg_dic[cmd.split(' ')[1]] = cmd.split('_')[1]
+                        print(msg_dic)        
                         #mes=await client.send_message(my_bot_ch,cmd.split('_')[1])
                         #price_msg = mes.id
                         #print("delete message:")
@@ -194,9 +196,9 @@ def run_bot(queue_in,queue_out):
                     else:
                         
                         msg_dic[cmd.split(' ')[1]] = cmd.split('_')[1]
-                        #print('init msg dic')
-                        #print(msg_dic[cmd.split(' ')[1]])
-                        #print(mes.id)
+                        print('init msg dic')
+                        print(msg_dic[cmd.split(' ')[1]])
+                        print(mes.id)
 
                     if tslot % 30 == 0:
                         for k in msg_dic.keys():
@@ -411,11 +413,10 @@ class MyWindow(QMainWindow):
     def _handler_real_data(self, code, real_type, real_data):
         global rt_jm_dic
         if real_type == "주식체결":
-            print(code + "in real")
             if code in rt_jm_dic:
                 if rt_jm_dic[code][1] ==0:
                     tgt_str= f"aim {code} _{rt_jm_dic[code][0]}{mypkg.issf(rt_jm_dic[code][0])}{self.GetCommRealData(code, 10)}  체결시간: {self.GetCommRealData(code, 20)} 등락율:{self.GetCommRealData(code, 12)} 누적거래량:{self.GetCommRealData(code, 13)} 전일거래량대비:{self.GetCommRealData(code, 30)}"
-                    #print(tgt_str)
+                    print(tgt_str)
                     #self.plain_text_edit.appendPlainText(tgt_str)
                     self.queue_in.put(tgt_str)
                     rt_jm_dic[code][1] = 1
