@@ -43,7 +43,7 @@ async def tele_send_msg(msg_txt):
 
 def dart_mon_pf_td():
     tstamp = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
-    print("check dart"+tstamp)
+    #print("check dart"+tstamp)
     list=dart.list(start=today_date,end=tgt_date,kind='I')
     #list1= dart.list(start=start_date,end=tgt_date,kind='A')
 #list.query('report_nm.str.contains("30%")')
