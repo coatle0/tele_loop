@@ -158,8 +158,8 @@ def run_bot(queue_in,queue_out):
                 rt_jm_dic[list(rt_jm_dic.keys())[tslot%len(rt_jm_dic)]][1]=0
             
             if (tslot % 30 == 0) & (len(msg_dic) != 0):
+                print(msg_dic)
                 for k in msg_dic.keys():
-                    print(msg_dic)
                     tgt_str = tgt_str + msg_dic[k]+ '\n' 
 
                 if price_msg != 0:
