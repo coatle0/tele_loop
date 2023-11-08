@@ -77,7 +77,7 @@ def run_bot(queue_in,queue_out):
         global rt_jm_dic
         # Log the date of new edits
         if event.id in perf_dic:
-            print('Message', event.id, 'changed at', event.date)
+            #print('Message', event.id, 'changed at', event.date)
             #await client.delete_messages(my_bot_ch,[event.id])
             #await client.send_message(my_bot_ch,"/delreal "+perf_dic[event.id])
             #print("del real data"+ perf_dic[event.id])
@@ -85,15 +85,6 @@ def run_bot(queue_in,queue_out):
             print(msg_dic)
             del rt_jm_dic[mypkg.get_code(perf_dic[event.id])]
             print(rt_jm_dic)
-            
-
-    @client.on(events.MessageDeleted(chats=my_bot_ch))
-    async def handler(event):
-        global rt_jm_dic
-    # Log all deleted message IDs
-        for msg_id in event.deleted_ids:
-            #del_jm=[k for k, v in rt_jm_dic.items() if v == msg_id][0]
-            print(event.deleted_ids)
 
     @client.on(events.NewMessage(chats=my_bot_ch))
     async def handler(event):
@@ -148,7 +139,7 @@ def run_bot(queue_in,queue_out):
                     for i in range(0,df_pef_dt):
                         aim_str = '/testkw aim '+ df_pef['corp_name'].iloc[i]+' 0 0'
                         queue_out.put(aim_str)
-                        print(aim_str)
+                        #print(aim_str)
                         tstamp = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
                         if mypkg.issf(df_pef['corp_name'].iloc[i]):
                             sf_str = "sf on"
@@ -168,6 +159,7 @@ def run_bot(queue_in,queue_out):
             
             if (tslot % 30 == 0) & (len(msg_dic) != 0):
                 for k in msg_dic.keys():
+                    print(msg_dic)
                     tgt_str = tgt_str + msg_dic[k]+ '\n' 
 
                 if price_msg != 0:
