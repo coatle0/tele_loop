@@ -137,7 +137,7 @@ def run_bot(queue_in,queue_out):
                 if df_pef_dt != 0 :
                     df_pef_delta=df_pef[['stock_code','corp_name','url']][0:df_pef_dt]
                     for i in range(0,df_pef_dt):
-                        aim_str = '/testkw aim '+ df_pef['corp_name'].iloc[i]+' 0 0'
+                        aim_str = '/testkw aim '+"'"+df_pef['corp_name'].iloc[i]+"'"+' 0 0'
                         queue_out.put(aim_str)
                         #print(aim_str)
                         tstamp = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
@@ -146,7 +146,7 @@ def run_bot(queue_in,queue_out):
                         else:
                             sf_str =""
                         
-                        tgt_str = tstamp+" "+sf_str+df_pef_delta['corp_name'].iloc[i]+' '+df_pef_delta['stock_code'].iloc[i]+' '+df_pef_delta['url'].iloc[i]
+                        tgt_str = tstamp+" "+sf_str+" "+df_pef_delta['corp_name'].iloc[i]+' '+df_pef_delta['stock_code'].iloc[i]+' '+df_pef_delta['url'].iloc[i]
                         print("new announce "+tstamp)
                         print(tgt_str)
                         #asyncio.run(mypkg.tele_send_msg(tgt_str))
@@ -200,7 +200,7 @@ def run_bot(queue_in,queue_out):
                         #await client.delete_messages(my_bot_ch, [msg_dic[cmd.split(' ')[1]]])
                         #mes=await client.send_message(my_bot_ch,cmd.split('_')[1])
                         msg_dic[cmd.split(' ')[1]] = cmd.split('_')[1]
-                        #print(msg_dic)        
+                        print(msg_dic)        
                         #mes=await client.send_message(my_bot_ch,cmd.split('_')[1])
                         #price_msg = mes.id
                         #print("delete message:")
@@ -211,9 +211,9 @@ def run_bot(queue_in,queue_out):
                     else:
                         
                         msg_dic[cmd.split(' ')[1]] = cmd.split('_')[1]
-                        print('init msg dic')
-                        print(msg_dic[cmd.split(' ')[1]])
-                        print(mes.id)
+                        #print('init msg dic')
+                        #print(msg_dic[cmd.split(' ')[1]])
+                        #print(mes.id)
 
 
                     #print(mes)
@@ -288,10 +288,10 @@ class MyWindow(QMainWindow):
         print(data)
         buyorsell = data.split(' ')[1]
         
-        jm_name = data.split(' ')[2]
+        jm_name = data.split("'")[1]
         jm_code = mypkg.get_code(jm_name)
-        jm_qty = data.split(' ')[3]
-        jm_tgt_price = data.split(' ')[4]
+        jm_qty = data.split(' ')[2]
+        jm_tgt_price = data.split(' ')[2]
 
         if buyorsell == 'bl':
             self.plain_text_edit.appendPlainText("[BOT]"+'Buy Limit:'+jm_name+jm_code+ jm_qty+'@'+jm_tgt_price)
