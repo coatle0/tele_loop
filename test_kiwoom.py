@@ -107,9 +107,12 @@ def run_bot(queue_in,queue_out):
             print(msg_dic["test message"])
             await client.delete_messages(my_bot_ch,[msg_dic["test message"]])
         if '/delreal' in event.message.message:
-            del msg_dic[mypkg.get_code(event.message.message.split(' ')[1])]
+            tgt_code = mypkg.get_code(event.message.message.split(' ')[1])
+            if tgt_code in msg_dic.keys():
+                del msg_dic[tgt_code]
             print(msg_dic)
-            del rt_jm_dic[mypkg.get_code(event.message.message.split(' ')[1])]
+            if tgt_code in rt_jm_dic:
+                del rt_jm_dic[tgt_code]
             print(rt_jm_dic)
             
         
@@ -151,6 +154,7 @@ def run_bot(queue_in,queue_out):
                         print(tgt_str)
                         #asyncio.run(mypkg.tele_send_msg(tgt_str))
                         mes=await client.send_message(my_bot_ch,tgt_str)
+                        tgt_str =""
                         perf_dic[mes.id] = df_pef['corp_name'].iloc[i]
 
                 ref_pef=df_pef
@@ -166,6 +170,7 @@ def run_bot(queue_in,queue_out):
                     await client.delete_messages(my_bot_ch, [price_msg])
                     mes=await client.send_message(my_bot_ch,tgt_str)
                     price_msg = mes.id
+                    tgt_str = ""
                 else:
                     mes=await client.send_message(my_bot_ch,tgt_str)
                     price_msg = mes.id
