@@ -14,7 +14,7 @@ args=commandArgs(trailingOnly=TRUE)
 qtr_ref_date <- args[1]
 week_ref_date <- args[2]
 idx_fn <- 'us_idx'
-#update_myuidx(qtr_ref_date,week_ref_date,idx_fn)
+update_myuidx(qtr_ref_date,week_ref_date,idx_fn)
 
 kidx_start = 5
 ktickerData <- new.env()
