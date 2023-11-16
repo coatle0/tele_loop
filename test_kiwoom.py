@@ -60,6 +60,9 @@ perf_dic = {}
 global hts_ready
 hts_ready = False
 
+global earing_season
+earing_season = False
+
 
 def run_bot(queue_in,queue_out):
     print("run_bot()")
@@ -127,13 +130,14 @@ def run_bot(queue_in,queue_out):
         global price_msg
         global perf_dic
         global hts_ready
+        global earing_season
 
         print('[BOT] check_queue(): start')
         while True:
             await asyncio.sleep(1)
             tslot = tslot + 1
 
-            if (tslot % 10 == 0) & hts_ready:
+            if (tslot % 10 == 0) & hts_ready & earing_season:
                 df_pef = mypkg.dart_mon_pf_td()
                 df_pef_dt = df_pef.shape[0] - ref_pef.shape[0]
 
@@ -158,6 +162,7 @@ def run_bot(queue_in,queue_out):
                         perf_dic[mes.id] = df_pef['corp_name'].iloc[i]
 
                 ref_pef=df_pef
+
             if len(rt_jm_dic) != 0:
                 rt_jm_dic[list(rt_jm_dic.keys())[tslot%len(rt_jm_dic)]][1]=0
             
@@ -426,7 +431,10 @@ class MyWindow(QMainWindow):
         if real_type == "주식체결":
             if code in rt_jm_dic:
                 if rt_jm_dic[code][1] ==0:
-                    tgt_str= f"aim {code} _{rt_jm_dic[code][0]}{mypkg.issf(rt_jm_dic[code][0])}{self.GetCommRealData(code, 10)}  체결시간: {self.GetCommRealData(code, 20)} 등락율:{self.GetCommRealData(code, 12)} 누적거래량:{self.GetCommRealData(code, 13)} 전일거래량대비:{self.GetCommRealData(code, 30)}"
+                    lc_trig = str(int(int(self.GetCommRealData(code, 16))*0.968))
+                    get_trig = str(int(int(self.GetCommRealData(code, 16))*0.982))
+                    open_rev = str(1-int(self.GetCommRealData(code, 18))/(self.GetCommRealData(code, 16))) 
+                    tgt_str= f"aim {code} _{rt_jm_dic[code][0]}{mypkg.issf(rt_jm_dic[code][0])}{self.GetCommRealData(code, 10)}  체결시간: {self.GetCommRealData(code, 20)} 등락율:{self.GetCommRealData(code, 12)} 시가:{self.GetCommRealData(code, 16)} 저가:{self.GetCommRealData(code, 18)} rev{open_rev} lc_trig{lc_trig} get_trig{get_trig}"
                     #print(tgt_str)
                     #self.plain_text_edit.appendPlainText(tgt_str)
                     self.queue_in.put(tgt_str)
