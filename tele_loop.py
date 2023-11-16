@@ -133,9 +133,8 @@ async def handler(event):
         buyorsell = event.message.message.split(' ')[1]
            
     if '/shield' in event.message.message:
-        os.system('rscript dbg_day_run.R '+tgt_date)
+        os.system('rscript shield.R')
         await client.send_message(my_bot_ch, "https://docs.google.com/spreadsheets/d/1M0LjBg2tPZprA-BIvsOZXjNPyK_gKm4pY4Ns93gvgJo/edit#gid=1794360922")
-    #debug daily 5m
     if '/dbg' in event.message.message:
         #jm_name = event.message.message.split('_')[1]
         tgt_date = event.message.message.split(' ')[1]
