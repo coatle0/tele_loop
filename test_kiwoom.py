@@ -435,7 +435,7 @@ class MyWindow(QMainWindow):
                     pr_low = int(self.GetCommRealData(code, 18))
                     lc_trig = str(int(pr_open*0.968))
                     get_trig = str(int(pr_open*0.982))
-                    open_rev = str(round((1-pr_low/pr_open),1)) 
+                    open_rev = str(round((1-pr_low/pr_open)*100,1)) 
                     tgt_str= f"aim {code} _{rt_jm_dic[code][0]}{mypkg.issf(rt_jm_dic[code][0])}{self.GetCommRealData(code, 10)}  체결시간: {self.GetCommRealData(code, 20)} 등락율:{self.GetCommRealData(code, 12)} rev:{open_rev} lc-trig:{lc_trig} get-trig:{get_trig} 시가:{self.GetCommRealData(code, 16)} 저가:{self.GetCommRealData(code, 18)} "
                     #print(tgt_str)
                     #self.plain_text_edit.appendPlainText(tgt_str)
