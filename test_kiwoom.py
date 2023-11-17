@@ -431,10 +431,12 @@ class MyWindow(QMainWindow):
         if real_type == "주식체결":
             if code in rt_jm_dic:
                 if rt_jm_dic[code][1] ==0:
-                    lc_trig = str(int(int(self.GetCommRealData(code, 16))*0.968))
-                    get_trig = str(int(int(self.GetCommRealData(code, 16))*0.982))
-                    open_rev = str(1-self.GetCommRealData(code, 18)/(self.GetCommRealData(code, 16))) 
-                    tgt_str= f"aim {code} _{rt_jm_dic[code][0]}{mypkg.issf(rt_jm_dic[code][0])}{self.GetCommRealData(code, 10)}  체결시간: {self.GetCommRealData(code, 20)} 등락율:{self.GetCommRealData(code, 12)} 시가:{self.GetCommRealData(code, 16)} 저가:{self.GetCommRealData(code, 18)} rev{open_rev} lc_trig{lc_trig} get_trig{get_trig}"
+                    pr_open = int(self.GetCommRealData(code, 16))
+                    pr_low = int(self.GetCommRealData(code, 18))
+                    lc_trig = str(int(pr_open*0.968))
+                    get_trig = str(int(pr_open*0.982))
+                    open_rev = str(round((1-pr_low/pr_open),1)) 
+                    tgt_str= f"aim {code} _{rt_jm_dic[code][0]}{mypkg.issf(rt_jm_dic[code][0])}{self.GetCommRealData(code, 10)}  체결시간: {self.GetCommRealData(code, 20)} 등락율:{self.GetCommRealData(code, 12)} rev:{open_rev} lc-trig:{lc_trig} get-trig:{get_trig} 시가:{self.GetCommRealData(code, 16)} 저가:{self.GetCommRealData(code, 18)} "
                     #print(tgt_str)
                     #self.plain_text_edit.appendPlainText(tgt_str)
                     self.queue_in.put(tgt_str)
