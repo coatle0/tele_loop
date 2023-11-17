@@ -131,7 +131,11 @@ async def handler(event):
 
     if '/test' in event.message.message:
         buyorsell = event.message.message.split(' ')[1]
-           
+
+    if '/runkw' in event.message.message:
+        os.system('python test_kiwoom.py')
+        await client.send_message(my_bot_ch, "kw ready")
+
     if '/shield' in event.message.message:
         os.system('rscript shield.R')
         await client.send_message(my_bot_ch, "https://docs.google.com/spreadsheets/d/1M0LjBg2tPZprA-BIvsOZXjNPyK_gKm4pY4Ns93gvgJo/edit#gid=1794360922")
