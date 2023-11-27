@@ -137,7 +137,9 @@ async def handler(event):
         await client.send_message(my_bot_ch, "kw ready")
 
     if '/shield' in event.message.message:
+        await event.message.delete()
         os.system('rscript shield.R')
+        os.system('rscript shield_us.R')
         await client.send_message(my_bot_ch, "https://docs.google.com/spreadsheets/d/1M0LjBg2tPZprA-BIvsOZXjNPyK_gKm4pY4Ns93gvgJo/edit#gid=1794360922")
     if '/dbg' in event.message.message:
         #jm_name = event.message.message.split('_')[1]
