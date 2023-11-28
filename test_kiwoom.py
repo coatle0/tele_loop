@@ -299,7 +299,8 @@ class MyWindow(QMainWindow):
         buyorsell = data.split(' ')[1]
         
         jm_name = data.split("'")[1]
-        jm_code = mypkg.get_code(jm_name)
+        if buyorsell != 'sf':
+            jm_code = mypkg.get_code(jm_name)
         jm_qty = data.split(' ')[2]
         jm_tgt_price = data.split(' ')[2]
 
@@ -322,7 +323,7 @@ class MyWindow(QMainWindow):
             self.plain_text_edit.appendPlainText("[BOT]"+'Sell Market:'+jm_name+jm_code+ jm_qty)
             #self.queue_in.put("order "+jm_code+" _"+'Sell Market:'+jm_code+ jm_qty)
             self.SendOrder("매도", "8002", self.account, 2, jm_code, int(jm_qty), int(jm_tgt_price), "03", "")
-        elif buyorsell == 'aim':
+        elif buyorsell == 'aim':  #real jm setting
             #self.rq_opt10003(jm_code)
             self.plain_text_edit.appendPlainText("[BOT]"+'Aim jm:'+jm_name+jm_code+ jm_qty)
             #self.queue_in.put("aim "+jm_code+" _"+'Aim jm:'+jm_code+ jm_qty+'@'+jm_tgt_price)
@@ -330,11 +331,24 @@ class MyWindow(QMainWindow):
             print(jm_name + jm_code+"set real")
             self.SetRealReg(2, jm_code, "20",1)
             #self.subs_jm_aim(aim_jm_lst,2)
+        elif buyorsell == 'sf':  #stock future
+            #self.rq_opt10003(jm_code)
+            self.plain_text_edit.appendPlainText("[BOT]"+'sf '+jm_name)
+            #self.queue_in.put("aim "+jm_code+" _"+'Aim jm:'+jm_code+ jm_qty+'@'+jm_tgt_price)
+            #rt_jm_dic[jm_code]=[jm_name,0]
+            #print(jm_name + jm_code+"set real")
+            self.SetRealReg(2, jm_code, "20",1)
+            #self.subs_jm_aim(aim_jm_lst,2)
 
 
 
 
         self.plain_text_edit.appendPlainText("[BOT]"+data)
+    def rq_opt50001(self,jm_code):
+
+        sf_code = '1'+jm_code+'000'
+        self.SetInputValue("종목코드",jm_code)
+        self.CommRqData("주식선물현재가", "opt50001", 0, "0003")
     
     def rq_opt10003(self,jm_code):
         global rq_prefix
@@ -369,6 +383,9 @@ class MyWindow(QMainWindow):
         self.queue_in.put("login kiwoom completed")
 
     def _handler_tr_data(self, screen_no, rqname, trcode, record, next):
+        if rqname == '주식선물현재가':
+            tgt_str= f"sf {rq_prefix} _{self.GetCommData(trcode, rqname, 0,'종가')}  체결시간: {self.GetCommData(trcode, rqname, 0,'시간')} 등락율:{self.GetCommData(trcode, rqname, 0, '대비율')} 누적거래량:{self.GetCommData(trcode, rqname, 0, '누적거래량')}"
+
         if   rqname == "종목체결":
             tgt_str= f"aim {rq_prefix} _{self.GetCommData(trcode, rqname, 0,'종가')}  체결시간: {self.GetCommData(trcode, rqname, 0,'시간')} 등락율:{self.GetCommData(trcode, rqname, 0, '대비율')} 누적거래량:{self.GetCommData(trcode, rqname, 0, '누적거래량')}"
             print(tgt_str)
@@ -433,8 +450,8 @@ class MyWindow(QMainWindow):
                 if rt_jm_dic[code][1] ==0:
                     pr_open = abs(int(self.GetCommRealData(code, 16)))
                     pr_low = abs(int(self.GetCommRealData(code, 18)))
-                    lc_trig = str(abs(int(pr_open))*0.968)
-                    get_trig = str(abs(int(pr_open))*0.982)
+                    lc_trig = str(int(pr_open*0.968))
+                    get_trig = str(int(pr_open*0.982))
                     open_rev = str(round((1-pr_low/pr_open)*100,1)) 
                     tgt_str= f"aim {code} _{rt_jm_dic[code][0]}{mypkg.issf(rt_jm_dic[code][0])}{self.GetCommRealData(code, 10)}  체결시간: {self.GetCommRealData(code, 20)} 등락율:{self.GetCommRealData(code, 12)} rev:{open_rev} lc-trig:{lc_trig} get-trig:{get_trig} 시가:{self.GetCommRealData(code, 16)} 저가:{self.GetCommRealData(code, 18)} "
                     #print(tgt_str)
