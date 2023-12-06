@@ -83,7 +83,7 @@ async def Run_Telethon():
 
 kwd_prop = '최근 실적'
 
-kwd4event = ['시설투자','단일판매','공급계약','무상증자결정','유상증자결정','회사분할결정']
+kwd4event = ['무상증자결정','유상증자결정','투자판단관련']
 
 @client.on(events.NewMessage(chats=awake_ch))
 async def handler(event):
