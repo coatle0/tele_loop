@@ -123,7 +123,7 @@ async def handler(event):
     await client.get_dialogs()
     date_of_post = datetime.datetime.today()-datetime.timedelta(days=1)
     #msgs=str(event)
-    print(event.message.message)
+    #print(event.message.message)
     escape = 0
     
     #await event.reply('안녕!')
@@ -293,6 +293,7 @@ async def handler(event):
         #await event.message.delete()
         print('rscript --vanilla run_jm.R '+jm_name+" k")
         os.system('rscript --vanilla run_jm.R '+jm_name+" k")
+        await client.send_message(my_bot_ch,"https://docs.google.com/spreadsheets/d/1GWW0Q1RgMNAvSG7S4OyrbXSpcSHDnMSmd2uTsmZyJJE/edit#gid=1026403975")
 
 
     
