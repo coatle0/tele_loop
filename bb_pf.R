@@ -18,8 +18,15 @@ bb_win_szs <- 8
 start_date<-today()-180
 
 #get us pf list
-pf_us_sht <- "usport"
-pf_us_lst <- read_asgs_sheet(pf_us_sht)
+#pf_us_sht <- "usport"
+#pf_us_lst <- read_asgs_sheet(pf_us_sht)
+
+#get jm new 23-12-25
+pf_tbl <- read_asgs_sheet('portf_rt')
+nofkjm <- which(pf_tbl$jm=='US')-1
+nofusjm <- which(pf_tbl$jm=='Renesas')-1
+
+pf_us_lst <- pf_tbl$jm[(nofkjm+2):nofusjm]
 
 pf_us_bb<-lapply(t(pf_us_lst),function(x){print(x);
 
@@ -63,15 +70,17 @@ names(pf_us_bb)<-t(pf_us_lst)
 pf_us_bb.df <- do.call(cbind,lapply(pf_us_bb,function(x){data.frame(date=index(x),coredata(x))}))
 
 write_asgs_sheet(pf_us_bb.df,"pf_us_bb","A1")
-#get my pf list
-pf_fn <- 'pf_idx'
-pf_gs_lst <- read_rtgs_idx(pf_fn)
-pfwt_lst<-pf_gs_lst[[2]]
 
-pfsmb_lst<-pf_gs_lst[[1]]
-pfsmb_ary<-unlist(pfsmb_lst)
+#get my kor pf list
+#pf_fn <- 'pf_idx'
+#pf_gs_lst <- read_rtgs_idx(pf_fn)
+#pfwt_lst<-pf_gs_lst[[2]]
 
+#pfsmb_lst<-pf_gs_lst[[1]]
+#pfsmb_ary<-unlist(pfsmb_lst)
 
+#get kor jm list 231225
+pfsmb_ary <- pf_us_lst <- pf_tbl$jm[1:nofkjm]
 pf_smb_bb<-lapply(pfsmb_ary,function(x){tqk_code<-code[match(x,code$name),3]$code;
 
 yahoo_code<-paste0(tqk_code,".KQ")
