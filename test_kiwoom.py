@@ -61,7 +61,7 @@ global hts_ready
 hts_ready = False
 
 global earing_season
-earing_season = False
+earing_season = True
 
 
 def run_bot(queue_in,queue_out):
