@@ -140,7 +140,7 @@ async def handler(event):
         await event.message.delete()
         os.system('rscript shield.R')
         os.system('rscript shield_us.R')
-        await client.send_message(my_bot_ch, "https://docs.google.com/spreadsheets/d/1M0LjBg2tPZprA-BIvsOZXjNPyK_gKm4pY4Ns9n3gvgJo/edit#gid=1794360922")
+        await client.send_message(my_bot_ch, "https://docs.google.com/spreadsheets/d/1M0LjBg2tPZprA-BIvsOZXjNPyK_gKm4pY4Ns93gvgJo/edit#gid=1794360922")
 
     if '/pfbb' in event.message.message:
         await event.message.delete()
