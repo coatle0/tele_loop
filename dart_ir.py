@@ -90,7 +90,7 @@ for i in range (0,test.shape[0]):
     
     time.sleep(3)
 
-
+rtl_df.to_excel(excel_writer=fn,index=False)
 
 
 
