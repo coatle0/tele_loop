@@ -76,6 +76,10 @@ for i in range (0,test.shape[0]):
         txt_buf=table2[0][0:4].to_string()
         test['flr_nm'].iloc[i] = txt_buf
     except ValueError:
+        table2 = pd.read_html(tbl_url, match = '결정일자', header=0)
+        txt_buf=table2[0][0:4].to_string()
+        test['flr_nm'].iloc[i] = txt_buf    
+    except ValueError:
         print(test.iloc[i,])
     
     time.sleep(3)
