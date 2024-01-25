@@ -67,25 +67,26 @@ for i in range (0,test.shape[0]):
     df_temp=dart.sub_docs(test['rcept_no'].iloc[i],)
     print(i)
     print(test['corp_name'].iloc[i])
-    tbl_url=re.sub("'.'",'',df_temp['url'][0])
-    try:
-        table2 = pd.read_html(tbl_url, match = '일시', header=0)
-        txt_buf=table2[0][0:4].to_string()
-        test['flr_nm'].iloc[i] = txt_buf
-    except ValueError:
-        table2 = pd.read_html(tbl_url, match = '시작일', header=0)
-        txt_buf=table2[0][0:4].to_string()
-        test['flr_nm'].iloc[i] = txt_buf
-    except ValueError:
-        table2 = pd.read_html(tbl_url, match = '결정일자', header=0)
-        txt_buf=table2[0][0:4].to_string()
-        test['flr_nm'].iloc[i] = txt_buf    
-    except ValueError:
-        table2 = pd.read_html(tbl_url, match = '해당기간', header=0)
-        txt_buf=table2[0][0:4].to_string()
-        test['flr_nm'].iloc[i] = txt_buf     
-    except ValueError:
-        print(test.iloc[i,])
+    if test['corp_name'].iloc[i] != '삼미금속':
+        tbl_url=re.sub("'.'",'',df_temp['url'][0])
+        try:
+            table2 = pd.read_html(tbl_url, match = '일시', header=0)
+            txt_buf=table2[0][0:4].to_string()
+            test['flr_nm'].iloc[i] = txt_buf
+        except ValueError:
+            table2 = pd.read_html(tbl_url, match = '시작일', header=0)
+            txt_buf=table2[0][0:4].to_string()
+            test['flr_nm'].iloc[i] = txt_buf
+        except ValueError:
+            table2 = pd.read_html(tbl_url, match = '결정일자', header=0)
+            txt_buf=table2[0][0:4].to_string()
+            test['flr_nm'].iloc[i] = txt_buf    
+        except ValueError:
+            table2 = pd.read_html(tbl_url, match = '해당기간', header=0)
+            txt_buf=table2[0][0:4].to_string()
+            test['flr_nm'].iloc[i] = txt_buf     
+        except ValueError:
+            print(test.iloc[i,])
     
     time.sleep(3)
 
