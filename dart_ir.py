@@ -66,7 +66,7 @@ for i in range (0,test.shape[0]):
     test['stockfu'].iloc[i] = mypkg.issf(test['corp_name'].iloc[i])
     df_temp=dart.sub_docs(test['rcept_no'].iloc[i],)
     print(i)
-    print(test['corp_name'])
+    print(test['corp_name'].iloc[i])
     tbl_url=re.sub("'.'",'',df_temp['url'][0])
     try:
         table2 = pd.read_html(tbl_url, match = '일시', header=0)
