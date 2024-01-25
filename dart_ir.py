@@ -53,6 +53,14 @@ df_index.remove('flr_nm')
 test=test.drop(df_index,axis=1)
 test['stockfu']='True'
 
+rlt_df = pd.DataFrame()
+rtl_df = test
+
+fn = "IR.xlsx"
+fn_csv="IR.csv"
+#test.to_csv(fn,encoding='euc-kr')
+rtl_df.to_excel(excel_writer=fn,index=False)
+
 for i in range (0,test.shape[0]):
     #url = tgt_url.iloc[i]
     test['stockfu'].iloc[i] = mypkg.issf(test['corp_name'].iloc[i])
@@ -75,13 +83,7 @@ for i in range (0,test.shape[0]):
 
 
 
-rlt_df = pd.DataFrame()
-rtl_df = test
 
-fn = "IR.xlsx"
-fn_csv="IR.csv"
-#test.to_csv(fn,encoding='euc-kr')
-rtl_df.to_excel(excel_writer=fn,index=False)
 
 
 os.system('rscript put_ir_gs.R')
