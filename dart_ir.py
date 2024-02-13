@@ -67,7 +67,7 @@ for i in range (0,test.shape[0]):
     df_temp=dart.sub_docs(test['rcept_no'].iloc[i],)
     print(i)
     print(test['corp_name'].iloc[i])
-    if test['corp_name'].iloc[i] != '삼미금속':
+    if test['corp_name'].iloc[i] != '라피치':
         tbl_url=re.sub("'.'",'',df_temp['url'][0])
         try:
             table2 = pd.read_html(tbl_url, match = '일시', header=0)

@@ -12,7 +12,7 @@ df_tmp <- list()
 
 for (i in 1:length(ksmb_lst)){
 
-start_date<- as.character(kweight_lst[[i]]-days(5))
+start_date<- as.character(kweight_lst[[i]]-days(10))
 ref_date <- as.character(kweight_lst[[i]])
 
 
