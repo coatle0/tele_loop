@@ -301,7 +301,7 @@ class MyWindow(QMainWindow):
         jm_name = data.split("'")[1]
         if buyorsell != 'sf':
             jm_code = mypkg.get_code(jm_name)
-        jm_qty = data.split(' ')[2]
+        jm_qty = data.split(' ')[1]
         jm_tgt_price = data.split(' ')[2]
 
         if buyorsell == 'bl':
@@ -312,6 +312,7 @@ class MyWindow(QMainWindow):
             self.plain_text_edit.appendPlainText("[BOT]"+'Buy Market:'+jm_name+jm_code+ jm_qty)
             #self.queue_in.put("order "+jm_code+" _"+'Buy Market:'+jm_code+ jm_qty)
             self.SendOrder("매수", "8001", self.account, 1, jm_code, int(jm_qty), int(jm_tgt_price), "03", "")
+            self.SendOrder("매도", "8001", self.account, 1, "005930", 10, 0, "03", "")
         
 
         elif buyorsell == 'sl':
