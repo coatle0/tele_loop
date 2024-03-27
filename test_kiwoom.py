@@ -301,8 +301,8 @@ class MyWindow(QMainWindow):
         jm_name = data.split("'")[1]
         if buyorsell != 'sf':
             jm_code = mypkg.get_code(jm_name)
-        jm_qty = data.split(' ')[1]
-        jm_tgt_price = data.split(' ')[2]
+        jm_qty = data.split(' ')[3]
+        jm_tgt_price = data.split(' ')[4]
 
         if buyorsell == 'bl':
             self.plain_text_edit.appendPlainText("[BOT]"+'Buy Limit:'+jm_name+jm_code+ jm_qty+'@'+jm_tgt_price)
