@@ -267,7 +267,7 @@ class MyWindow(QMainWindow):
 
         self.target = None
         self.range = None
-        self.account = "8059360911"
+        self.account = "80689400"
         self.amount = 10000
         self.hold = None
 
