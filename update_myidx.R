@@ -21,7 +21,7 @@ ktickerData <- new.env()
 data_start = "2022-12-05"
 qtr_start = qtr_ref_date
 week_start = week_ref_date
-code<-code_get()
+code<-code_get(fresh = TRUE)
 
 update_myidx(kidx_start,data_start,qtr_start,week_start)
 
