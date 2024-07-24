@@ -82,19 +82,19 @@ for i in range (0,test.shape[0]):
 
     if (test['corp_name'].iloc[i] != '라피치') and (test['corp_name'].iloc[i] != '루트락'):
         try:
-            table2 = pd.read_html(doc_url, match = '시작일', header=0,encoding='utf8')
+            table2 = pd.read_html(doc_url, match = '시작일', header=0,encoding='euc-kr')
             txt_buf=table2[0][0:4].to_string()
             test['flr_nm'].iloc[i] = txt_buf
         except ValueError:
-            table2 = pd.read_html(doc_url, match = '일시', header=0,encoding='utf8')
+            table2 = pd.read_html(doc_url, match = '일시', header=0,encoding='euc-kr')
             txt_buf=table2[0][0:4].to_string()
             test['flr_nm'].iloc[i] = txt_buf
         except ValueError:
-            table2 = pd.read_html(doc_url, match = '결정일자', header=0,encoding='utf8')
+            table2 = pd.read_html(doc_url, match = '결정일자', header=0,encoding='euc-kr')
             txt_buf=table2[0][0:4].to_string()
             test['flr_nm'].iloc[i] = txt_buf    
         except ValueError:
-            table2 = pd.read_html(doc_url, match = '해당기간', header=0,encoding='utf8')
+            table2 = pd.read_html(doc_url, match = '해당기간', header=0,encoding='euc-kr')
             txt_buf=table2[0][0:4].to_string()
             test['flr_nm'].iloc[i] = txt_buf     
         except ValueError:
