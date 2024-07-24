@@ -63,13 +63,14 @@ fn_csv="IR.csv"
 rtl_df.to_excel(excel_writer=fn,index=False)
 
 #pattern to search
-pt= "\t\tviewDoc\(\""+rcp_no+"\", \""+"\d+\""
+
 
 for i in range (0,test.shape[0]):
     #url = tgt_url.iloc[i]
     test['stockfu'].iloc[i] = mypkg.issf(test['corp_name'].iloc[i])
     
     rcp_no = test['rcept_no'].iloc[i]
+    pt= "\t\tviewDoc\(\""+rcp_no+"\", \""+"\d+\""
     r = requests.get(f'http://dart.fss.or.kr/dsaf001/main.do?rcpNo={rcp_no}')
     matches = re.findall(single_page_re, r.text)
     matches_list=matches[0].split('"')
