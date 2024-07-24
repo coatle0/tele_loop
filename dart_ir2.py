@@ -72,7 +72,7 @@ for i in range (0,test.shape[0]):
     rcp_no = test['rcept_no'].iloc[i]
     pt= "\t\tviewDoc\(\""+rcp_no+"\", \""+"\d+\""
     r = requests.get(f'http://dart.fss.or.kr/dsaf001/main.do?rcpNo={rcp_no}')
-    matches = re.findall(single_page_re, r.text)
+    matches = re.findall(pt, r.text)
     matches_list=matches[0].split('"')
     params = f'rcpNo={rcp_no}&dcmNo={matches_list[3]}&eleId=0&offset=0&length=0&dtd=HTML'
     doc_url = f'http://dart.fss.or.kr/report/viewer.do?{params}'
