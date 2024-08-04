@@ -414,3 +414,6 @@ async def handler(event):
         perf_df.to_excel(excel_writer='perf_awak_3q23.xlsx')
         print('performance update done')
 
+
+nest_asyncio.apply()
+asyncio.run(Run_Telethon())
