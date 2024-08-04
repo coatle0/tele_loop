@@ -74,8 +74,6 @@ async def Run_Telethon():
     awake_entity = await client.get_entity(awake_ch)
     await client.send_message(my_bot_ch,'Bot is ready')
     print('bot is ready!')
-    await client.send_message(pub_botch,'Bot is ready')
-
     #print(my_channel)
     
    
@@ -413,7 +411,6 @@ async def handler(event):
         kwd_df.to_excel(excel_writer='kwd_awak'+kwd4df+'.xlsx')
         perf_df.to_excel(excel_writer='perf_awak_3q23.xlsx')
         print('performance update done')
-
 
 nest_asyncio.apply()
 asyncio.run(Run_Telethon())
