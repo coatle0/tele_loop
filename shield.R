@@ -1,6 +1,6 @@
 setwd('~')
 ktickerData <- new.env()
-code<-code_get(fresh = TRUE)
+code<-code_get()
 
 bb_win_szl <- 20
 bb_win_szs <- 8
@@ -50,7 +50,7 @@ prices_run_idx = sweep(prices_run,2,ref_prices,'/')*100
 
 colnames(prices_run_idx) <- ksmb_lst[[i]]
 
-prices_run_idx_sort<-prices_run_idx[,(order(colSums(tail(prices_run_idx[,-1])),decreasing = T)+1)[1:3]]
+prices_run_idx_sort<-prices_run_idx[,(order(colSums(tail(prices_run_idx[,-1])),decreasing = T)+1)[1:2]]
 
 prices_run_idx_sort<- cbind(prices_run_idx[,1],prices_run_idx_sort)
 colnames(prices_run_idx_sort)[1] <- ksmb_lst[[i]][1]
