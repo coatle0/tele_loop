@@ -7,7 +7,7 @@ bot_gosu = Bot(token = "7297044765:AAHxCAZ_ETjoG3lyDTkvggM3i4drCL_5Y4g")
 args=commandArgs(trailingOnly=TRUE)
 
 msg_text <- args[1]
-
+print("send message")
 
 bot$sendMessage(chat_id = chat_id, text =msg_text)
 
