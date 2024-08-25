@@ -1,3 +1,7 @@
+library(telegram.bot)
+bot=Bot(token="5824250303:AAF30nE1zYlP28DzS-Gd69yAegN-LgHU_ag")
+chat_id <- 1278251780
+
 setwd('~')
 
 args=commandArgs(trailingOnly=TRUE)
@@ -15,3 +19,8 @@ week_start = week_ref_date
 code<-code_get()
 update_myidx(kidx_start,data_start,qtr_start,week_start)
 
+msg_text <- 'update kidx complete'
+#msg_text <- args[1]
+#print("send message")
+
+bot$sendMessage(chat_id = chat_id, text =msg_text)
