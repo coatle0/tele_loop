@@ -4,9 +4,9 @@ chat_id <- 1278251780
 
 bot_gosu = Bot(token = "7297044765:AAHxCAZ_ETjoG3lyDTkvggM3i4drCL_5Y4g")
 
-#args=commandArgs(trailingOnly=TRUE)
-msg_text <- 'test'
-#msg_text <- args[1]
+args=commandArgs(trailingOnly=TRUE)
+#msg_text <- 'test'
+msg_text <- args[1]
 print("send message")
 
 bot$sendMessage(chat_id = chat_id, text =msg_text)
