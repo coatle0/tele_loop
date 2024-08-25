@@ -5,11 +5,6 @@ chat_id <- 1278251780
 #bot_gosu = Bot(token = "7297044765:AAHxCAZ_ETjoG3lyDTkvggM3i4drCL_5Y4g")
 
 #args=commandArgs(trailingOnly=TRUE)
-msg_text <- 'update uidx'
-#msg_text <- args[1]
-print("send message")
-
-bot$sendMessage(chat_id = chat_id, text =msg_text)
 
 setwd('~')
 tickerData <- new.env()
@@ -22,3 +17,10 @@ qtr_ref_date <- args[1]
 week_ref_date <- args[2]
 idx_fn <- 'us_idx'
 update_myuidx(qtr_ref_date,week_ref_date,idx_fn)
+
+msg_text <- 'update uidx complete'
+#msg_text <- args[1]
+#print("send message")
+
+bot$sendMessage(chat_id = chat_id, text =msg_text)
+
