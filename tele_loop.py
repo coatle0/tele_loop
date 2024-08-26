@@ -154,11 +154,23 @@ async def handler(event):
         await mes.delete()
     #vv weekly korean
     if '/vvwk' in event.message.message:
+        await event.message.delete()
         #jm_name = event.message.message.split('_')[1]
         tgt_jm = event.message.message.split(' ')[1]
         tgt_nyear = event.message.message.split(' ')[2]
         #count_msg = 0
         cli_txt = 'rscript'+' '+'run_vvwk.R'+' '+tgt_jm+' '+tgt_nyear
+        os.system(cli_txt)
+        #mes = await client.send_message(my_bot_ch, "done!")
+        #time.sleep(1.5)
+        #await mes.delete()
+    if '/vvwu' in event.message.message:
+        await event.message.delete()
+        #jm_name = event.message.message.split('_')[1]
+        tgt_jm = event.message.message.split(' ')[1]
+        tgt_nyear = event.message.message.split(' ')[2]
+        #count_msg = 0
+        cli_txt = 'rscript'+' '+'run_vvwu.R'+' '+tgt_jm+' '+tgt_nyear
         os.system(cli_txt)
         #mes = await client.send_message(my_bot_ch, "done!")
         #time.sleep(1.5)
