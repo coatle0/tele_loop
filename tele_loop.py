@@ -152,6 +152,17 @@ async def handler(event):
         mes = await client.send_message(my_bot_ch, "done!")
         time.sleep(1.5)
         await mes.delete()
+    #vv weekly korean
+    if '/vvwk' in event.message.message:
+        #jm_name = event.message.message.split('_')[1]
+        tgt_jm = event.message.message.split(' ')[1]
+        tgt_nyear = event.message.message.split(' ')[1]
+        #count_msg = 0
+        cli_txt = 'rscript'+' '+'run_vvwk.R'+' '+tgt_jm+' '+tgt_nyear
+        os.system(cli_txt)
+        #mes = await client.send_message(my_bot_ch, "done!")
+        #time.sleep(1.5)
+        #await mes.delete()
     
     if '/dbl' in event.message.message:
         jm_name = event.message.message.split(' ')[1]
