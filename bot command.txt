@@ -1,0 +1,16 @@
+deepl - tx txt to epub
+vvwu - volume vol us market (' jm nyear')
+vvwk - volume vol kor market (' jm nyear')
+pead - price earning anouncement drift
+st - start of script file (' jm xqyy')
+br - bi report, chart link and anal report
+bb - bband (' jm')
+init_jm - get jm list from gs rt_sginal focus_idx
+shield - update shield for port jm
+pfbb - bband for pf both kr and us
+runkw - run test_kiwoom
+dbg - dbg 5m vsdfm with gs ('yyyymmdd')
+dbl - dbg single jm(' jm yyyymdd')
+qkw - quit kiwoom
+quit - exit loop
+live - check bot live
