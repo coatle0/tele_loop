@@ -12,7 +12,7 @@ week_ref_date <- args[2]
 
 kidx_start = 5
 ktickerData <- new.env()
-data_start = "2022-12-05"
+data_start = qtr_ref_date
 qtr_start = qtr_ref_date
 week_start = week_ref_date
 
