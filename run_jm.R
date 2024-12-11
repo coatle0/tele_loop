@@ -4,6 +4,7 @@ library(quantmod)
 library(PerformanceAnalytics)
 library(telegram.bot)
 library(tidyquant)
+library(mypkg)
 
 bot=Bot(token="5824250303:AAF30nE1zYlP28DzS-Gd69yAegN-LgHU_ag")
 chat_id <- 1278251780
