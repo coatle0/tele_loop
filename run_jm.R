@@ -1,5 +1,4 @@
 library(googlesheets4)
-library(tqk)
 library(lubridate)
 library(quantmod)
 library(PerformanceAnalytics)
