@@ -318,7 +318,7 @@ async def handler(event):
         #await client.forward_messages(my_bot_ch,event.message)
         #await event.message.delete()
         print('rscript run_jm.R '+jm_name+" k")
-        os.system('rscript --vanilla run_jm.R '+jm_name+" k")
+        os.system('rscript run_jm.R '+jm_name+" k")
         await client.send_message(my_bot_ch,"https://docs.google.com/spreadsheets/d/1GWW0Q1RgMNAvSG7S4OyrbXSpcSHDnMSmd2uTsmZyJJE/edit#gid=1026403975")
         cli_txt = 'rscript'+' '+'run_vvwk.R'+' '+jm_name+' '+'1'
         os.system(cli_txt)
