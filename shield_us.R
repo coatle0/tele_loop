@@ -4,7 +4,7 @@ tickerData <- new.env()
 bb_win_szl <- 20
 bb_win_szs <- 8
 
-idx_gs_lst <- read_gs_idx('mybiz.us')
+idx_gs_lst <- read_asgs_idx('mybiz.us')
 kweight_lst<-idx_gs_lst[[2]]
 ksmb_lst<-idx_gs_lst[[1]]
 
