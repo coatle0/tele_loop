@@ -5,7 +5,7 @@ code<-code_get()
 bb_win_szl <- 20
 bb_win_szs <- 8
 
-idx_gs_lst <- read_gs_idx('mybiz')
+idx_gs_lst <- read_asgs_idx('mybiz')
 kweight_lst<-idx_gs_lst[[2]]
 ksmb_lst<-idx_gs_lst[[1]]
 
@@ -17,10 +17,8 @@ start_date<- as.character(kweight_lst[[i]]-days(32))
 ref_date <- as.character(kweight_lst[[i]])
 
 
-lapply(ksmb_lst[[i]],function(x){ tqk_code<-code[match(x,code$name),3]$code;yahoo_code<-paste0(tqk_code,".KQ");
-                        temp<-tryCatch(expr= tqk_get(tqk_code,from=start_date),
-                        error = function(e) { print(paste0(x," new jm, using yahoo"));get_yahoo<-tq_get(yahoo_code, get = "stock.prices", from = start_date);return(get_yahoo[,2:7])},
-                        warning = function(e) print("Warning") );
+lapply(ksmb_lst[[i]],function(x){ tqk_code<-code[match(x,code$name),3]$code;
+                        temp<-tqk_get(tqk_code,from=start_date);
                         assign(x,xts(temp[,2:6],temp$date),envir=ktickerData)})
 
 ref_xts <- get(ksmb_lst[[i]][1],envir=ktickerData)
