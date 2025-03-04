@@ -34,6 +34,8 @@ temp_atrs <- ATR(ref_xts[,c("high","low","close")],n=bb_win_szs)
 temp_bbl$atrl <- temp_atrl$trueLow
 temp_bbl$dn <- temp_bbs$dn
 temp_bbl <- temp_bbl[,-4]
+#add real close price
+temp_bbl$now <- ref_xts$close
 
 
 
@@ -52,6 +54,7 @@ prices_run_idx_sort<-prices_run_idx[,(order(colSums(tail(prices_run_idx[,-1])),d
 
 prices_run_idx_sort<- cbind(prices_run_idx[,1],prices_run_idx_sort)
 colnames(prices_run_idx_sort)[1] <- ksmb_lst[[i]][1]
+#disable indexization
 temp_bbl <- (temp_bbl/ref_prices[1])*100
 
 xts_tmp <- cbind(temp_bbl,prices_run_idx_sort)
