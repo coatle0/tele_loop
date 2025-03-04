@@ -39,6 +39,8 @@ temp_bbl$atrl <- temp_atrl$trueLow
 temp_bbl$dn <- temp_bbs$dn
 temp_bbl <- temp_bbl[,-4]
 
+temp_bbl$now <- ref_xts$close
+
 
 
 
@@ -56,7 +58,8 @@ prices_run_idx_sort<-prices_run_idx[,(order(colSums(tail(prices_run_idx[,-1])),d
 
 prices_run_idx_sort<- cbind(prices_run_idx[,1],prices_run_idx_sort)
 colnames(prices_run_idx_sort)[1] <- ksmb_lst[[i]][1]
-temp_bbl <- (temp_bbl/ref_prices[1])*100
+#disable index
+#temp_bbl <- (temp_bbl/ref_prices[1])*100
 
 xts_tmp <- cbind(temp_bbl,prices_run_idx_sort)
 
