@@ -27,9 +27,10 @@ import mypkg
 
 
 focusjm_fn = "focusjm.xls" 
+api_id = os.getenv("TELEGRAM_API_ID")
+api_hash = os.getenv("TELEGRAM_API_HASH")
 
-#api_id = '26890695'
-#api_hash = '37fabab3680ade31f959c9c7f7241d71'
+
 
 bot_id = 5824250303
 awake_id = 1066938528
