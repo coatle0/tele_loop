@@ -7,7 +7,8 @@ library(telegram.bot)
 library(tidyquant)
 
 
-bot=Bot(token="5824250303:AAF30nE1zYlP28DzS-Gd69yAegN-LgHU_ag")
+bot=Bot(token=Sys.getenv("telegram_bot_token"))
+kw_bot=Bot(token=Sys.getenv("telegram_kw_token"))
 chat_id <- 1278251780
 
 code<-code_get()

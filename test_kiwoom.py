@@ -29,8 +29,9 @@ global ref_pef, ref_br
 ref_pef = pd.DataFrame()
 ref_br = pd.DataFrame()
 
-api_id = '26890695'
-api_hash = '37fabab3680ade31f959c9c7f7241d71'
+api_id = os.getenv("TELEGRAM_API_ID")
+api_hash = os.getenv("TELEGRAM_API_HASH")
+
 bot_id = 5824250303
 awake_id = 1066938528
 my_bot_ch = 'https://t.me/coatle_bot'

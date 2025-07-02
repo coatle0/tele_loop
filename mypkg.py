@@ -9,9 +9,9 @@ import asyncio
 import openpyxl
 import pandas as pd
 #telegram key
-tele_api_key = "5824250303:AAF30nE1zYlP28DzS-Gd69yAegN-LgHU_ag"
-chat_id = 1278251780
-bot = telegram.Bot(token = tele_api_key)
+bot=Bot(token=Sys.getenv("telegram_bot_token"))
+kw_bot=Bot(token=Sys.getenv("telegram_kw_token"))
+chat_id <- 1278251780
 
 #dart api key
 api_key = '61b268a6147bf74f5b549a99bff5ea2974e011b2'
