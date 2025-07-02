@@ -8,10 +8,6 @@ import asyncio
 
 import openpyxl
 import pandas as pd
-#telegram key
-bot=Bot(token=Sys.getenv("telegram_bot_token"))
-kw_bot=Bot(token=Sys.getenv("telegram_kw_token"))
-chat_id <- 1278251780
 
 #dart api key
 api_key = '61b268a6147bf74f5b549a99bff5ea2974e011b2'
@@ -36,10 +32,6 @@ def issf(jm_name):
 def get_code(jm_name):
     df_code = dart.corp_codes 
     return(df_code[(df_code['corp_name']==jm_name) &(df_code['stock_code'] != ' ')]['stock_code'].iloc[0])
-
-async def tele_send_msg(msg_txt):
-    bot.send_message(chat_id,msg_txt)
-
 
 def dart_mon_pf_td():
     tstamp = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
