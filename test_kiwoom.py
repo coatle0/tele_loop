@@ -74,7 +74,7 @@ def run_bot(queue_in,queue_out):
     client = TelegramClient('kiwoom_session', api_id, api_hash)
     print('loop',loop)
 
-    await client.send_message(my_bot_ch,'Kiwoom Bot is ready')
+
     print('bot is ready!')
 
     @client.on(events.MessageEdited(chats=my_bot_ch))
