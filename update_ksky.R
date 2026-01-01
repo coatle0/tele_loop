@@ -12,7 +12,7 @@ th_date <- args[2]
 ktickerData <- new.env()
 
 code<-code_get()
-ksky_lfcy(ref_date,th_date)
+ksky_lfcy2(ref_date,th_date)
 
 
 msg_text <- 'ksky update complete'
