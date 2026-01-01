@@ -12,7 +12,7 @@ th_date <- args[2]
 tickerData <- new.env()
 
 code<-code_get()
-usky_lfcy(ref_date,th_date)
+usky_lfcy2(ref_date,th_date)
 
 
 msg_text <- 'usky update complete'
