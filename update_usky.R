@@ -7,12 +7,12 @@ args=commandArgs(trailingOnly=TRUE)
 
 #shell('rscript tele_single.R update_index',wait = TRUE)
 ref_date <- args[1]
-idx_fn <- args[2]
+th_date <- args[2]
 
 tickerData <- new.env()
 
 code<-code_get()
-usky_lfcy(ref_date,idx_fn)
+usky_lfcy(ref_date,th_date)
 
 
 msg_text <- 'usky update complete'
