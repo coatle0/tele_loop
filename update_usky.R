@@ -9,9 +9,11 @@ args=commandArgs(trailingOnly=TRUE)
 ref_date <- args[1]
 th_date <- args[2]
 
+print(ref_date)
+print(th_date)
+
 tickerData <- new.env()
 
-code<-code_get()
 usky_lfcy2(ref_date,th_date)
 
 
